@@ -16,27 +16,27 @@
             margin: 0;
         }
 
-      .bear {
+       .bear {
             text-align: center;
         }
 
-      .bear img {
+       .bear img {
             width: 200px;
             transition: all 0.5s ease;
         }
 
-      .question {
+       .question {
             font-size: 24px;
             margin-top: 20px;
         }
 
-      .buttons {
+       .buttons {
             margin-top: 30px;
             display: flex;
             justify-content: center;
         }
 
-      .buttons button {
+       .buttons button {
             padding: 10px 20px;
             margin: 0 10px;
             border: none;
@@ -45,34 +45,34 @@
             transition: all 0.5s ease;
         }
 
-      .buttons button:nth-child(1) {
+       .buttons button:nth-child(1) {
             background-color: #e79494;
             color: white;
         }
 
-      .buttons button:nth-child(2) {
+       .buttons button:nth-child(2) {
             background-color: #6495ed;
             color: white;
         }
 
-      .cover-page {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            font-size: 5em;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+       .big-button {
+            transform: scale(1.5);
         }
 
+       .crying-bear {
+            content: url('https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2595231775.jpg'); /* 这里可替换为哭泣小熊图链接 */
+        }
+
+       .shy-bear {
+            content: url('https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2595231772.jpg'); /* 这里可替换为害羞小熊图链接 */
+        }
     </style>
 </head>
 
 <body>
     <div class="bear">
-        <img id="bearImg" src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2595231770.jpg" alt="小熊">
+        <img id="bearImg" src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2595231770.jpg"
+            alt="小熊">
     </div>
     <div class="question">可以成为我的恋人吗？</div>
     <div class="buttons">
@@ -83,9 +83,20 @@
         const yesButton = document.getElementById('yesButton');
         const noButton = document.getElementById('noButton');
         const bearImg = document.getElementById('bearImg');
+        let clickCount = 0;
 
         noButton.addEventListener('click', function () {
-            yesButton.classList.add('cover-page');
+            clickCount++;
+            yesButton.classList.add('big-button');
+            if (clickCount === 1) {
+                bearImg.src = 'https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2595231775.jpg'; // 哭泣小熊图链接
+            } else if (clickCount === 2) {
+                bearImg.src = 'https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2595231770.jpg'; // 初始小熊图链接
+            } else if (clickCount === 3) {
+                bearImg.src = 'https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2595231772.jpg'; // 害羞小熊图链接
+            } else {
+                bearImg.src = 'https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2595231770.jpg'; // 重置为初始小熊图链接
+            }
         });
 
         yesButton.addEventListener('click', function () {
